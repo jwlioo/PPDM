@@ -1,33 +1,56 @@
 function validateNumber(n) {
-    if (typeof n === 'number') return true;
-    throw new Error('Valor não é um número');
+    if (typeof n !== 'number'){
+        throw new Error('Valor não é um número');
+    }
+        return true;
 }
+console.log(validateNumber(10));
 
 // 2. validateUser(name, age)
 function validateUser(name, age) {
-    if (typeof name === 'string' && name.trim() !== '' && typeof age === 'number' && age >= 0) {
-        return true;
+    if (typeof name !== 'string' || name.trim() === ''){  
+        return false;
     }
-    return false;
+   if ( typeof age === 'number' || age <= 0 || !number.isInteger(age)) {
+       return false;
 }
+    return true;
+}
+console.log(validateUser('Ana', 25));
+
 
 // 3. factorial(n) com recursão
 function factorial(n) {
-    if (n <= 1) return 1;
+    if (n <= 1) {
+        return 1;
+    }
     return n * factorial(n - 1);
 }
 
+console.log(factorial(n));
+
 // 4. countDown(n)
 function countDown(n) {
-    if (n <= 0) return;
+    if (n <= 0) {
+        console.log('acabou');
+        return;
+    }
     console.log(n);
     countDown(n - 1);
 }
+
+console.log(5);
+
+
 
 // 5. applyFunction(fn, value)
 function applyFunction(fn, value) {
     return fn(value);
 }
+function square(x){
+    return x*x;
+}
+console.log(applyFunction(square, 2)); 
 
 // 6. Array de funções
 const operations = [
@@ -48,19 +71,26 @@ const greet = function(name) {
 // 8. Função em objeto
 const user = {
     sayHi: function() {
-        return "Oi!";
+        return "Oi!,eu sou ${this.name}";
     }
 };
+console.log(user.sayhi());
 
 // 9. calculate(a, b, callback)
 function calculate(a, b, callback) {
     return callback(a, b);
 }
 
+console.log(calculate(5,3, ( x ,y ) => x* y));
+
 // 10. formatMessage(msg, formatter)
 function formatMessage(msg, formatter) {
     return formatter(msg);
 }
+function toUpper(text){
+    return text.toUpperCase();
+}
+console.log(formatMessage('teste', toUpper));
 
 // 11. fakeRequest(url, callback)
 function fakeRequest(url, callback) {
@@ -68,6 +98,10 @@ function fakeRequest(url, callback) {
         callback(null, "OK");
     }, 1000);
 }
+
+fakeRequest('/api', (err, res) => {
+    console.log(res);
+});
 
 // 12. Encadeamento de chamadas
 fakeRequest('url1', function(err, res1) {
@@ -100,13 +134,20 @@ function countToFive() {
 // 15. Arrow function de soma
 const sum = (a, b) => a + b;
 
+console.log(sum(5,7));
+
 // 16. Arrow com this vs função tradicional
-const contexto = {
-    nome: 'Objeto',
-    arrow: () => {
-        console.log('Arrow this:', this); // não aponta para "contexto"
-    },
-    tradicional: function() {
-        console.log('Tradicional this:', this); // aponta para "contexto"
+const objeto = {
+    valor: 20,
+    sayThisArrow: () => {
+        console.log(this.valor);
     }
+},
+    sayThisRegular: fuction(){
+    console.log(this.valor);
+}
 };
+
+objeto.sayThisArrow();
+objeto.sayThisRegular():
+  
